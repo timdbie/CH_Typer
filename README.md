@@ -1,2 +1,2 @@
 # CH_Typer
-Typing website made with Express.
+Typing website made with Flask.
