@@ -89,7 +89,7 @@ body {
   width: 100%;
   height: 100%;
   color: white;
-  overflow-y: scroll;
+  overflow: hidden;
   margin-bottom: 40px;
 }
 
@@ -97,11 +97,21 @@ body {
   margin-right: 30px;
   height: 33%;
   font-size: 30px;
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
 }
 
 .contentbox .contentbox-wordscnt .contentbox-words span span {
   margin-right: 0;
+  height: 70%;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
 }
 
 .contentbox .contentbox-wordscnt .contentbox-wordsinp {
