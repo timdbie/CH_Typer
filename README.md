@@ -1,5 +1,5 @@
 # CH_Typer
-A complete typing webapp made in Flask. Inspired by MonkeyType, but made from scratch.
+A complete typing webapp made in Flask. Design inspired by MonkeyType. Functionality is made from scratch, no existing code was used.
 
 This was made with the following languages:
 
