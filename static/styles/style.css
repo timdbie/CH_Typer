@@ -71,7 +71,6 @@ body {
 }
 
 .header .header-cnt .header-options {
-  width: 80px;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -84,12 +83,35 @@ body {
           align-items: center;
 }
 
+.header .header-cnt .header-options .header-timercnt {
+  width: 100px;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #FAF000;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .header-cnt .header-options .header-timercnt button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
 .header .header-cnt .header-options i {
   color: white;
   cursor: pointer;
   font-size: 30px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  margin-left: 20px;
 }
 
 .header .header-cnt .header-options i:hover {

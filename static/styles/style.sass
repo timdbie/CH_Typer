@@ -48,17 +48,31 @@ body
                 opacity: 0.9
 
         .header-options
-            width: 80px
             height: 100%
             display: flex
             justify-content: space-between
             align-items: center
+
+            .header-timercnt
+                width: 100px
+                height: 20px
+                display: flex
+                justify-content: space-between
+                color: $maincolor
+                align-items: center
+
+                button
+                    background: none
+                    border: none
+                    color: white 
+                    cursor: pointer
 
             i
                 color: white
                 cursor: pointer
                 font-size: 30px
                 transition: 0.3s
+                margin-left: 20px
 
                 &:hover
                     transform: scale(1.1)

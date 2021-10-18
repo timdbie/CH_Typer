@@ -1,8 +1,10 @@
 $("document").ready(function() {
     $("#typer").css("display", "block")
     $("#typer").focus()
+    selectedtimer = 14
+    wpmval = 0.25
 
-    var wordlist = ["test", "hoi", "you", "hallo", "nee"];
+    var wordlist = ['a', 'about', 'all', 'also', 'and', 'as', 'at', 'be', 'because', 'but', 'by', 'can', 'come', 'could', 'day', 'do', 'do', 'even', 'find', 'first', 'for', 'from', 'get', 'give', 'go', 'have', 'he', 'her', 'here', 'him', 'his', 'how', 'if', 'in', 'into', 'it', 'its', 'just', 'know', 'like', 'look', 'make', 'man', 'many', 'me', 'more', 'my', 'new', 'no', 'not', 'now', 'of', 'on', 'one', 'only', 'or', 'other', 'our', 'out', 'people', 'say', 'see', 'she', 'so', 'some', 'take', 'tell', 'than', 'that', 'the', 'their', 'them', 'then', 'there', 'these', 'they', 'thing', 'think', 'this', 'those', 'time', 'to', 'two', 'up', 'use', 'very', 'want', 'way', 'we', 'well', 'what', 'when', 'which', 'who', 'will', 'with', 'would', 'year', 'you', 'your'];
 
     function startTyper () {
         words = [];
@@ -17,7 +19,7 @@ $("document").ready(function() {
         endingpopup = false;
 
         while(i <= 300) {        
-            words[i] = wordlist[Math.floor(Math.random() * 5)];
+            words[i] = wordlist[Math.floor(Math.random() * wordlist.length)];
             $(".contentbox-words").append(`<span class=w${i}>` + words[i] + "</span>")
             $(".w" + i).lettering();
 
@@ -31,9 +33,9 @@ $("document").ready(function() {
     $(".contentbox-wordscnt").fadeTo("fast", 1)
 
     function startTimer() {
-        sec = 14
+        sec = selectedtimer
         timerstarted = true
-        $(".contentbox-timer").html(15);
+        $(".contentbox-timer").html(sec+1);
 
         timer = setInterval(function () {
             if (sec >= 0) {
@@ -47,12 +49,20 @@ $("document").ready(function() {
         }, 1000);
     }
 
+    $(".header-timercnt button").click( function() {
+        selectedtimer = parseInt($(this).val())
+        wpmval = (selectedtimer + 1) / 60
+        $("#typer").focus()
+    });
+
+
     function endingPopUp() {
         $("#typer").blur()
         $(".contentbox-wordsinp").fadeTo("fast", 1)
 
         typedwords = totalentries / 5
-        wpm = typedwords / 0.25
+        wpm = typedwords / wpmval
+        wpm = Math.round(wpm)
 
         $(".contentbox-wordsinp h2").html(wpm + " WPM")
         endingpopup = true
@@ -60,6 +70,7 @@ $("document").ready(function() {
 
 
     function refreshTyper() {
+        $("#typer").blur()
         if (timerstarted){ 
             clearInterval(timer);
             $(".contentbox-timer").empty()
@@ -140,6 +151,7 @@ $("document").ready(function() {
             $(`.w${w} > .l${l}`).css("border-right", "2px solid transparent")
             $(".w" + w + " span").css("color", "white")
             $(".w" + w + " span").css("opacity", "0.2")
+            totalentries = totalentries - l
         }
         l = 0;
         inputlength = 0;
