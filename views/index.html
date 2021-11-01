@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://kit.fontawesome.com/b98998537c.js" crossorigin="anonymous"></script>
+    <script src="/js/lettering.js"></script>
+    <title>TimpieTyper</title>
+</head>
+
+<body>
+    <nav class="header">
+        <div class="header-cnt">
+            <a class="header-logo" href="#">
+                <img src="/img/logo.png" alt="" draggable="false">
+
+                <h1>TimpieTyper</h1>
+            </a>
+
+
+            <div class="header-options">
+                <div class="header-timercnt">
+                    <button value="14">15</button>
+                    /
+                    <button value="29">30</button>
+                    /
+                    <button value="59">60</button>
+                </div>
+
+                <i class="fas fa-volume-down"></i>
+                <i class="fas fa-cog" id="settings"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="contentbox">
+        <div class="contentbox-infocnt">
+            <div class="contentbox-timer">
+
+            </div>
+        </div>
+
+        <div class="contentbox-wordscnt">
+            <div class="contentbox-words">
+
+            </div>
+
+            <div class="contentbox-wordsinp">
+                <input type="text" id="typer" pattern="[a-zA-Z ]+" autocomplete="false">
+
+                <h1>TIME'S UP</h1>
+                    <h2></h2>
+                        <h3><i class="fas fa-mouse-pointer"></i> click to restart</h3>
+            </div>
+        </div>
+
+        <button id="refresh">&#x21bb</button>
+
+        <p><b>tab</b> + <b>enter</b> to restart</p>
+    </div>
+
+    <footer>
+        <div class="footer-cnt">
+            <div class="footer-linkscnt">
+                <a href="#"><i class="fab fa-github-alt"></i>Github</a>
+
+                <a href="#"><i class="fab fa-trello"></i>Trello</a>
+
+                <a href="#"><i class="fas fa-link"></i>Portfolio</a>
+
+                <a href="#"><i class="fab fa-github-alt"></i>Link</a>
+
+                <a href="#"><i class="fab fa-github-alt"></i>Link</a>
+            </div>
+
+            <div class="footer-btm">
+                TIM DE BIE © 2021
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/scripts.js"></script>
+</body>
+</html>
