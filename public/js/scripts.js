@@ -4,7 +4,7 @@ $("document").ready(function() {
     selectedtimer = 14
     wpmval = 0.25
 
-    var wordlist = ['a', 'about', 'all', 'also', 'and', 'as', 'at', 'be', 'because', 'but', 'by', 'can', 'come', 'could', 'day', 'do', 'do', 'even', 'find', 'first', 'for', 'from', 'get', 'give', 'go', 'have', 'he', 'her', 'here', 'him', 'his', 'how', 'if', 'in', 'into', 'it', 'its', 'just', 'know', 'like', 'look', 'make', 'man', 'many', 'me', 'more', 'my', 'new', 'no', 'not', 'now', 'of', 'on', 'one', 'only', 'or', 'other', 'our', 'out', 'people', 'say', 'see', 'she', 'so', 'some', 'take', 'tell', 'than', 'that', 'the', 'their', 'them', 'then', 'there', 'these', 'they', 'thing', 'think', 'this', 'those', 'time', 'to', 'two', 'up', 'use', 'very', 'want', 'way', 'we', 'well', 'what', 'when', 'which', 'who', 'will', 'with', 'would', 'year', 'you', 'your'];
+    //var wordlist = ['a', 'about', 'all', 'also', 'and', 'as', 'at', 'be', 'because', 'but', 'by', 'can', 'come', 'could', 'day', 'do', 'do', 'even', 'find', 'first', 'for', 'from', 'get', 'give', 'go', 'have', 'he', 'her', 'here', 'him', 'his', 'how', 'if', 'in', 'into', 'it', 'its', 'just', 'know', 'like', 'look', 'make', 'man', 'many', 'me', 'more', 'my', 'new', 'no', 'not', 'now', 'of', 'on', 'one', 'only', 'or', 'other', 'our', 'out', 'people', 'say', 'see', 'she', 'so', 'some', 'take', 'tell', 'than', 'that', 'the', 'their', 'them', 'then', 'there', 'these', 'they', 'thing', 'think', 'this', 'those', 'time', 'to', 'two', 'up', 'use', 'very', 'want', 'way', 'we', 'well', 'what', 'when', 'which', 'who', 'will', 'with', 'would', 'year', 'you', 'your'];
 
     function startTyper () {
         words = [];
@@ -18,13 +18,7 @@ $("document").ready(function() {
         timerstarted = false;
         endingpopup = false;
 
-        while(i <= 300) {        
-            words[i] = wordlist[Math.floor(Math.random() * wordlist.length)];
-            $(".contentbox-words").append(`<span class=w${i}>` + words[i] + "</span>")
-            $(".w" + i).lettering();
-
-            i++;
-        }
+        generateWords(wpmval*300)
         
         $("#typer").attr("maxlength", `${words[0].length}`)
     }
@@ -88,11 +82,13 @@ $("document").ready(function() {
     }
 
     $("#refresh").click( function() {
-        $(".contentbox-words").fadeOut(200)
+        $(".contentbox-words").fadeOut(150)
+        $(".contentbox-timer").fadeOut(150)
         $(".contentbox-words").promise().done(function(){
             refreshTyper()
+            $(".contentbox-words").fadeIn(150)
+            $(".contentbox-timer").fadeIn(0)
         });
-        $(".contentbox-words").fadeIn(200)
     });
 
 
@@ -131,7 +127,6 @@ $("document").ready(function() {
         
         if (text == words[w]) {
             $(".w" + w + " span").css("color", "green")
-            $(`.w${w} > .l${l}`).css("border-right", "2px solid transparent")
 
             oldpos = $(".w" + w).offset().top
             w++;
@@ -148,7 +143,6 @@ $("document").ready(function() {
 
             $("#typer").attr("maxlength", `${words[w].length}`)
         } else {
-            $(`.w${w} > .l${l}`).css("border-right", "2px solid transparent")
             $(".w" + w + " span").css("color", "white")
             $(".w" + w + " span").css("opacity", "0.2")
             totalentries = totalentries - l
@@ -165,20 +159,16 @@ $("document").ready(function() {
         if ($("#typer").val().length < inputlength) {
             $(`.w${w} > .l${l}`).css("opacity", "0.2")
             $(`.w${w} > .l${l}`).css("color", "white")
-            $(`.w${w} > .l${l}`).css("border-right", "2px solid transparent")
             l--;
             totalentries--;
-            $(`.w${w} > .l${l}`).css("border-right", "2px solid #faf000")
         } else {
             if($("#typer").val().length <= words[w].length){
                 if ($("#typer").val().charAt(l) != words[w].charAt(l)) {
                     $(`.w${w} > .l${l+1}`).css("color", "red")
                 }
                 $(`.w${w} > .l${l+1}`).css("opacity", "1")
-                $(`.w${w} > .l${l}`).css("border-right", "2px solid transparent")
                 l++;
                 totalentries++;
-                $(`.w${w} > .l${l}`).css("border-right", "2px solid #faf000")
             }
         }
         inputlength = $("#typer").val().length;
