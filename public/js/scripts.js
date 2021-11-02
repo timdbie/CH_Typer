@@ -4,8 +4,6 @@ $("document").ready(function() {
     selectedtimer = 14
     wpmval = 0.25
 
-    //var wordlist = ['a', 'about', 'all', 'also', 'and', 'as', 'at', 'be', 'because', 'but', 'by', 'can', 'come', 'could', 'day', 'do', 'do', 'even', 'find', 'first', 'for', 'from', 'get', 'give', 'go', 'have', 'he', 'her', 'here', 'him', 'his', 'how', 'if', 'in', 'into', 'it', 'its', 'just', 'know', 'like', 'look', 'make', 'man', 'many', 'me', 'more', 'my', 'new', 'no', 'not', 'now', 'of', 'on', 'one', 'only', 'or', 'other', 'our', 'out', 'people', 'say', 'see', 'she', 'so', 'some', 'take', 'tell', 'than', 'that', 'the', 'their', 'them', 'then', 'there', 'these', 'they', 'thing', 'think', 'this', 'those', 'time', 'to', 'two', 'up', 'use', 'very', 'want', 'way', 'we', 'well', 'what', 'when', 'which', 'who', 'will', 'with', 'would', 'year', 'you', 'your'];
-
     function startTyper () {
         words = [];
         i = 0;
@@ -19,7 +17,7 @@ $("document").ready(function() {
         endingpopup = false;
 
         generateWords(wpmval*300)
-        
+        checkChar()
         $("#typer").attr("maxlength", `${words[0].length}`)
     }
     startTyper();
@@ -74,6 +72,7 @@ $("document").ready(function() {
             $(".contentbox-wordsinp").fadeTo("fast", 0)
         }
 
+        $("#cursor").appendTo(".contentbox-wordscnt")
         $(".contentbox-words").empty()
         $(".contentbox-words").css("top", "0")
         startTyper()
@@ -143,13 +142,32 @@ $("document").ready(function() {
 
             $("#typer").attr("maxlength", `${words[w].length}`)
         } else {
-            $(".w" + w + " span").css("color", "white")
-            $(".w" + w + " span").css("opacity", "0.2")
+            $(".w" + w + " span").css("color", "rgba(255,255,255,0.20)")
             totalentries = totalentries - l
         }
         l = 0;
+        checkChar()
         inputlength = 0;
     }
+
+    function checkChar() {
+        if (l == 0) {
+            $("#cursor").appendTo(`.w${w} > .l${l + 1}`)
+
+            $("#cursor").css({
+                "left" : "-1px",
+                "right" : "auto"
+            })
+        } else {
+            $("#cursor").appendTo(`.w${w} > .l${l}`)
+
+            $("#cursor").css({
+                "left" : "auto",
+                "right" : "-1px"
+            })
+        }
+    }
+
 
     $("#typer").on("input", function() {
         if (timerstarted == false) {
@@ -157,18 +175,20 @@ $("document").ready(function() {
         }
 
         if ($("#typer").val().length < inputlength) {
-            $(`.w${w} > .l${l}`).css("opacity", "0.2")
-            $(`.w${w} > .l${l}`).css("color", "white")
+            $(`.w${w} > .l${l}`).css("color", "rgba(255,255,255,0.20)")
             l--;
             totalentries--;
+            checkChar()
         } else {
             if($("#typer").val().length <= words[w].length){
                 if ($("#typer").val().charAt(l) != words[w].charAt(l)) {
                     $(`.w${w} > .l${l+1}`).css("color", "red")
+                } else {
+                    $(`.w${w} > .l${l+1}`).css("color", "white")
                 }
-                $(`.w${w} > .l${l+1}`).css("opacity", "1")
                 l++;
                 totalentries++;
+                checkChar()
             }
         }
         inputlength = $("#typer").val().length;
