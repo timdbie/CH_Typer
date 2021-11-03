@@ -50,26 +50,27 @@ $("document").ready(function() {
 
     function endingPopUp() {
         $("#typer").blur()
-        $(".contentbox-wordsinp").fadeTo("fast", 1)
+        $("#endingpopup").fadeTo("fast", 1)
 
         typedwords = totalentries / 5
         wpm = typedwords / wpmval
         wpm = Math.round(wpm)
 
-        $(".contentbox-wordsinp h2").html(wpm + " WPM")
+        $("#endingpopup h2").html(wpm + " WPM")
         endingpopup = true
     }
 
 
     function refreshTyper() {
         $("#typer").blur()
+        $("#typer").val("")
         if (timerstarted){ 
             clearInterval(timer);
             $(".contentbox-timer").empty()
         }
 
         if (endingpopup) {
-            $(".contentbox-wordsinp").fadeTo("fast", 0)
+            $("#endingpopup").fadeTo("fast", 0)
         }
 
         $("#cursor").appendTo(".contentbox-wordscnt")
@@ -118,8 +119,6 @@ $("document").ready(function() {
         }
     });
 
-    $("#typer").change(submitInput)
-
     function submitInput() {
         text = $("#typer").val();
         $("#typer").val("");
@@ -155,7 +154,7 @@ $("document").ready(function() {
             $("#cursor").appendTo(`.w${w} > .l${l + 1}`)
 
             $("#cursor").css({
-                "left" : "-1px",
+                "left" : "-2px",
                 "right" : "auto"
             })
         } else {
