@@ -211,13 +211,15 @@ body {
   -webkit-transition: 0.1s;
   transition: 0.1s;
   letter-spacing: 1px;
+  border-bottom: 2px solid transparent;
 }
 
 .contentbox .contentbox-wordscnt .contentbox-words span span {
-  padding: 0 0;
-  height: 60%;
+  padding: 0;
+  height: 80%;
   color: rgba(255, 255, 255, 0.2);
   position: relative;
+  border-bottom: 2px solid transparent;
 }
 
 .contentbox .contentbox-wordscnt .contentbox-wordsinp {
@@ -254,29 +256,52 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup .endingpopup-cnt {
+  width: 200px;
+  height: 100%;
+  margin: 0 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
 }
 
-.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup h1 {
+.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup .endingpopup-cnt h1 {
+  color: white;
   font-size: 20px;
-  font-weight: lighter;
+}
+
+.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup .endingpopup-cnt .endingpopup-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40%;
+}
+
+.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup .endingpopup-cnt .endingpopup-top h1 {
+  color: white;
+  margin-right: 10px;
+  font-size: 50px;
+}
+
+.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup .endingpopup-cnt .endingpopup-top h2 {
   color: #FAF000;
-  letter-spacing: 2px;
+  font-size: 50px;
 }
 
-.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup h2 {
-  font-size: 30px;
+.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup .endingpopup-cnt .endingpopup-btm {
   color: white;
-}
-
-.contentbox .contentbox-wordscnt .contentbox-wordsinp #endingpopup h3 {
-  font-size: 15px;
-  color: white;
-  font-weight: lighter;
-  margin-top: 10px;
 }
 
 .contentbox button {

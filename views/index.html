@@ -51,18 +51,38 @@
             </div>
 
             <div class="contentbox-wordsinp">
-                <input type="text" id="typer" pattern="[a-zA-Z ]+" autocomplete="false">
+                <input type="text" id="typer" wordsinppattern="[a-zA-Z ]+" autocomplete="off">
 
                 <div id="endingpopup">
-                    <h1>TIME'S UP</h1>
-                        <h2></h2>
-                            <h3><i class="fas fa-mouse-pointer"></i> click to restart</h3>
+                    <div class="endingpopup-cnt">
+                        <h1>WPM</h1>
+
+                        <div class="endingpopup-top" id="wpm">
+                            <h1></h1><h2>WPM</h2>
+                        </div>
+
+                        <div class="endingpopup-btm" id="rawwpm">
+                           
+                        </div>
+                    </div>
+
+                    <div class="endingpopup-cnt">
+                        <h1>ACCURACY</h1>
+
+                        <div class="endingpopup-top" id="accuracy">
+                            <h1></h1><h2>%</h2>
+                        </div>
+
+                        <div class="endingpopup-btm" id="entries">
+                        
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
+        
         <button id="refresh">&#x21bb</button>
-
+        
         <p><b>tab</b> + <b>enter</b> to restart</p>
     </div>
 
