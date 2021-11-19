@@ -139,7 +139,7 @@ $("document").ready(function() {
         text = $("#typer").val();
 
         if (text != words[w]) {
-            $(`.w${w} > span`).css("border-bottom", "2px solid red")
+            $(`.w${w} > span`).css("border-bottom", "2px solid rgb(220,20,60)")
         }
 
 
@@ -189,7 +189,7 @@ $("document").ready(function() {
         }
 
         if ($("#typer").val().length < inputlength) {
-            if($(`.w${w} > .l${l}`).css("color") == "rgb(255, 0, 0)") {
+            if($(`.w${w} > .l${l}`).css("color") == "rgb(220,20,60)") {
                 errors--;
             } else {
                 correctentries--;
@@ -201,7 +201,7 @@ $("document").ready(function() {
         } else {
             if($("#typer").val().length <= words[w].length){
                 if ($("#typer").val().charAt(l) != words[w].charAt(l)) {
-                    $(`.w${w} > .l${l+1}`).css("color", "red")
+                    $(`.w${w} > .l${l+1}`).css("color", "rgb(220,20,60)")
                     errors++;
                 } else {
                     $(`.w${w} > .l${l+1}`).css("color", "white")
