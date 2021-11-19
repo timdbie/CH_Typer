@@ -2,6 +2,8 @@
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "express-session-mariadb-store": "^0.1.4",
     "mariadb": "^2.5.5"
   }
 }
