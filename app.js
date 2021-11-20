@@ -32,7 +32,7 @@ app.get('/', function (req, res) {
 						db.query("SELECT id FROM tb_accounts ORDER BY id DESC LIMIT 1")
 							.then((rows) => {
 								var result = rows[0].id
-								var username = "user#" + (result).toLocaleString('en-US', {minimumIntegerDigits: 5, useGrouping:false})
+								var username = "user" + (result).toLocaleString('en-US', {minimumIntegerDigits: 4, useGrouping:false})
 								db.query("UPDATE tb_accounts SET username = '"+username+"' WHERE id = '"+result+"'")
 
 								resolve(result);
@@ -51,6 +51,13 @@ app.get('/', function (req, res) {
 		res.sendFile(path.join(__dirname + '/views/index.html'))
 		console.log("UID is already active")
 	}
+});
+
+app.get('/userdata', function (req, res) {
+	db.query("SELECT * FROM tb_accounts WHERE id = "+req.session.uid+"")
+		.then((rows) => {
+			res.json(rows[0]); 
+		});
 });
 
 app.listen(3000);

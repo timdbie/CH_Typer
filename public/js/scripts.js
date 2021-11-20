@@ -1,4 +1,10 @@
 $("document").ready(function() {
+    url = 'http://localhost:3000/userdata/'
+
+    $.getJSON(url, function (data) {
+        $(".header-usercnt h1").html(data.username)
+    })
+        
     $("#typer").css("display", "block")
     $("#typer").focus()
     selectedtimer = 14

@@ -114,19 +114,23 @@ body {
   cursor: pointer;
 }
 
-.header .header-cnt .header-options i {
-  color: white;
-  cursor: pointer;
-  font-size: 30px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  margin-left: 20px;
+.header .header-cnt .header-options .header-usercnt {
+  height: 100%;
+  margin-left: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.header .header-cnt .header-options i:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  color: #FAF000;
+.header .header-cnt .header-options .header-usercnt h1 {
+  color: white;
+  font-size: 15px;
 }
 
 .contentbox {
