@@ -1,10 +1,4 @@
-$("document").ready(function() {
-    url = 'http://localhost:3000/userdata/'
-
-    $.getJSON(url, function (data) {
-        $(".header-usercnt h1").html(data.username)
-    })
-        
+$("document").ready(function() {        
     $("#typer").css("display", "block")
     $("#typer").focus()
     selectedtimer = 14
@@ -49,11 +43,11 @@ $("document").ready(function() {
         }, 1000);
     }
 
-    $(".header-timercnt button").click( function() {
+    /*$(".header-timercnt button").click( function() {
         selectedtimer = parseInt($(this).val())
         wpmval = (selectedtimer + 1) / 60
         $("#typer").focus()
-    });
+    });*/
 
 
     function endingPopUp() {
@@ -68,10 +62,6 @@ $("document").ready(function() {
         netwpm = typedcorrectwords / wpmval
         netwpmval = Math.round(netwpm)
 
-        if(netwpmval < 0) {
-            netwpmval = 0
-        }
-
         accuracy = Math.round((correctentries / totalentries) * 100)
 
         $("#wpm h1").html(netwpmval)
@@ -79,6 +69,12 @@ $("document").ready(function() {
 
         $("#accuracy h1").html(accuracy)
         $("#entries").html("entries: " + totalentries + "/" + correctentries + "/" + errors)
+
+        $.post({
+            url: '/',
+            data: {netwpmval}
+        })
+
         endingpopup = true
     }
 
@@ -220,5 +216,29 @@ $("document").ready(function() {
         }
         inputlength = $("#typer").val().length;
     });
+
+
+    $.ajax(
+        {
+        url: "http://localhost:3000/leaderboard", 
+        method: 'POST',
+        success: function(res){
+            let i = 0
+            while (i < 10) {
+                row = `<div><p>${i+1}. ${res[i].username}</p><p>${res[i].pb_15} WPM</p></div>`
+                $(".temp-leaderboard").append(row)
+                i++;
+            }
+        }
+    })
+
+    $.ajax({
+        url: "http://localhost:3000/userdata", 
+        method: 'POST',
+        success: function(res){
+            username = `<h1>${res[0].username}</h1>`
+            $(".header-usercnt").append(username)
+        }
+    })
 
 });

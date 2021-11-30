@@ -9,7 +9,3 @@ function generateWords(wordamount) {
         i++;
     }
 }
-[
-    
-
-];
