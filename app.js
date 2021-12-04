@@ -27,39 +27,6 @@ app.use(session({
 	rolling : true
 }))
 
-/*app.get('/', function (req, res) {
-	if (!req.session.uid) {
-		function genUid() {
-			return new Promise((resolve, reject) => {
-				db.query("INSERT INTO tb_accounts (username, pb_15, pb_30, pb_60) VALUES ('undefined', 0, 0, 0)") 
-					.then(() => {
-						db.query("SELECT id FROM tb_accounts ORDER BY id DESC LIMIT 1")
-							.then((rows) => {
-								var result = rows[0].id
-								var username = "user" + (result).toLocaleString('en-US', {minimumIntegerDigits: 4, useGrouping:false})
-								db.query("UPDATE tb_accounts SET username = '"+username+"' WHERE id = '"+result+"'")
-
-								resolve(result);
-							})
-					});
-			});
-		}
-
-		genUid().then(result => {
-			req.session.uid = result
-			res.sendFile(path.join(__dirname + '/views/index.html'))
-			console.log("Account " + result + " was succesfully generated!")
-		})
-
-	} else {
-		res.sendFile(path.join(__dirname + '/views/index.html'))
-		console.log("UID is already active")
-	}
-
-	//leaderboard
-
-});*/
-
 app.get('/', function (req, res) {
 	function submitHeader() {
 		res.sendFile(path.join(__dirname + '/views/index.html'))
