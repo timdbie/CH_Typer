@@ -48,6 +48,84 @@ body
         align-items: center
         color: white
 
+.leaderboard-cnt
+    width: 100%
+    height: 100vh
+    position: absolute
+    z-index: 999
+    display: none
+    justify-content: center
+    align-items: center
+    background-color: #00000088
+
+    .leaderboard
+        width: 1000px
+        height: 600px
+        background-color: $background
+
+        .leaderboard-header
+            width: 100%
+            height: 80px
+            display: flex
+            justify-content: space-between
+            align-items: center
+            padding: 0 20px
+            
+            h1
+                font-size: 30px
+                color: white
+
+            .leaderboard-btncnt
+                height: 50px
+                display: flex
+
+                div
+                    width: 50px
+                    height: 100%
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    color: white
+                    cursor: pointer
+
+                #leaderboard-btn1
+                    color: $maincolor
+
+                #leaderboard-closebtn
+                    font-size: 30px
+
+        .leaderboard-15s,
+        .leaderboard-30s,
+        .leaderboard-60s
+            width: 1000px
+            height: 520px
+            padding: 0px 10px 10px 10px
+
+        .leaderboard-15s
+            display: block
+        
+        .leaderboard-30s
+            display: none
+
+        .leaderboard-60s
+            display: none
+
+        .leaderboard-row1,
+        .leaderboard-row2
+            width: 100%
+            height: 10%
+            display: flex
+            justify-content: space-between
+            align-items: center
+            color: white
+            padding: 10px
+
+        .leaderboard-row1
+            background-color: #1b2530
+
+        .leaderboard-row2
+            background-color: #202831
+
 .header
     width: 100%
     height: 100px
@@ -110,6 +188,15 @@ body
                 h1
                     color: white
                     font-size: 15px
+
+            .header-lbcnt
+                margin-left: 15px
+                height: 100%
+                display: flex
+                justify-content: center
+                align-items: center
+                color: white
+                cursor: pointer
 
 .contentbox
     width: 100%

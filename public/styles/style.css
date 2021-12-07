@@ -67,6 +67,123 @@ body {
   color: white;
 }
 
+.leaderboard-cnt {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 999;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #00000088;
+}
+
+.leaderboard-cnt .leaderboard {
+  width: 1000px;
+  height: 600px;
+  background-color: #11171E;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-header {
+  width: 100%;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 20px;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-header h1 {
+  font-size: 30px;
+  color: white;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-header .leaderboard-btncnt {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-header .leaderboard-btncnt div {
+  width: 50px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-header .leaderboard-btncnt #leaderboard-btn1 {
+  color: #FAF000;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-header .leaderboard-btncnt #leaderboard-closebtn {
+  font-size: 30px;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-15s,
+.leaderboard-cnt .leaderboard .leaderboard-30s,
+.leaderboard-cnt .leaderboard .leaderboard-60s {
+  width: 1000px;
+  height: 520px;
+  padding: 0px 10px 10px 10px;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-15s {
+  display: block;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-30s {
+  display: none;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-60s {
+  display: none;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-row1,
+.leaderboard-cnt .leaderboard .leaderboard-row2 {
+  width: 100%;
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  padding: 10px;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-row1 {
+  background-color: #1b2530;
+}
+
+.leaderboard-cnt .leaderboard .leaderboard-row2 {
+  background-color: #202831;
+}
+
 .header {
   width: 100%;
   height: 100px;
@@ -173,6 +290,22 @@ body {
 .header .header-cnt .header-options .header-usercnt h1 {
   color: white;
   font-size: 15px;
+}
+
+.header .header-cnt .header-options .header-lbcnt {
+  margin-left: 15px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  cursor: pointer;
 }
 
 .contentbox {

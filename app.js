@@ -57,17 +57,47 @@ app.get('/', function (req, res) {
 })
 
 app.post('/', function(req, res) {
-	db.query("SELECT pb_15 FROM tb_accounts WHERE id = "+req.session.uid+"")
+	db.query("SELECT * FROM tb_accounts WHERE id = "+req.session.uid+"")
 	.then((rows) => {
-		if (req.body.netwpmval > rows[0].pb_15) {
-			db.query("UPDATE tb_accounts SET pb_15 = "+req.body.netwpmval+" WHERE id = "+req.session.uid+"")
+		if (req.body.selectedtimer == 14) {
+			if (req.body.netwpmval > rows[0].pb_15) {
+				db.query("UPDATE tb_accounts SET pb_15 = "+req.body.netwpmval+" WHERE id = "+req.session.uid+"")
+			}
 		}
+
+		if (req.body.selectedtimer == 29) {
+			if (req.body.netwpmval > rows[0].pb_30) {
+				db.query("UPDATE tb_accounts SET pb_30 = "+req.body.netwpmval+" WHERE id = "+req.session.uid+"")
+			}
+		}
+
+		if (req.body.selectedtimer == 59) {
+			if (req.body.netwpmval > rows[0].pb_60) {
+				db.query("UPDATE tb_accounts SET pb_60 = "+req.body.netwpmval+" WHERE id = "+req.session.uid+"")
+			}
+		}
+		
+		console.log(req.body)
 	});
 	
 });
 
-app.post('/leaderboard', function (req, res) {
+app.post('/leaderboard15s', function (req, res) {
 	db.query("SELECT * FROM tb_accounts ORDER BY pb_15 DESC LIMIT 10")
+	.then((rows) =>{
+		res.send(rows)
+	})
+})
+
+app.post('/leaderboard30s', function (req, res) {
+	db.query("SELECT * FROM tb_accounts ORDER BY pb_30 DESC LIMIT 10")
+	.then((rows) =>{
+		res.send(rows)
+	})
+})
+
+app.post('/leaderboard60s', function (req, res) {
+	db.query("SELECT * FROM tb_accounts ORDER BY pb_60 DESC LIMIT 10")
 	.then((rows) =>{
 		res.send(rows)
 	})
@@ -80,5 +110,5 @@ app.post('/userdata', function (req, res) {
 	});
 })
 
-app.listen(3000);
+app.listen(3001, "172.16.128.100");
 console.log('Express server started');

@@ -18,7 +18,7 @@ $("document").ready(function() {
         timerstarted = false;
         endingpopup = false;
 
-        generateWords(wpmval*300)
+        generateWords(300)
         checkChar()
         $("#typer").attr("maxlength", `${words[0].length}`)
     }
@@ -43,11 +43,11 @@ $("document").ready(function() {
         }, 1000);
     }
 
-    /*$(".header-timercnt button").click( function() {
+    $(".header-timercnt button").click( function() {
         selectedtimer = parseInt($(this).val())
         wpmval = (selectedtimer + 1) / 60
         $("#typer").focus()
-    });*/
+    });
 
 
     function endingPopUp() {
@@ -72,7 +72,7 @@ $("document").ready(function() {
 
         $.post({
             url: '/',
-            data: {netwpmval}
+            data: {netwpmval, selectedtimer}
         })
 
         endingpopup = true
@@ -217,23 +217,109 @@ $("document").ready(function() {
         inputlength = $("#typer").val().length;
     });
 
+    $(".header-lbcnt").click( function(){
+        $(".leaderboard-cnt").css("display", "flex")
+    })
+
+    $("#leaderboard-closebtn").click( function(){
+        $(".leaderboard-cnt").css("display", "none")
+    })
+
+    $("#leaderboard-btn1").click( function() {
+        $(".leaderboard-15s").css("display", "block")
+        $(".leaderboard-30s").css("display", "none")
+        $(".leaderboard-60s").css("display", "none")
+
+        $("#leaderboard-btn1").css("color", "#FAF000")
+        $("#leaderboard-btn2").css("color", "white")
+        $("#leaderboard-btn3").css("color", "white")
+    })
+
+    $("#leaderboard-btn2").click( function() {
+        $(".leaderboard-15s").css("display", "none")
+        $(".leaderboard-30s").css("display", "block")
+        $(".leaderboard-60s").css("display", "none")
+
+        $("#leaderboard-btn1").css("color", "white")
+        $("#leaderboard-btn2").css("color", "#FAF000")
+        $("#leaderboard-btn3").css("color", "white")
+    })
+
+    $("#leaderboard-btn3").click( function() {
+        $(".leaderboard-15s").css("display", "none")
+        $(".leaderboard-30s").css("display", "none")
+        $(".leaderboard-60s").css("display", "block")
+
+        $("#leaderboard-btn1").css("color", "white")
+        $("#leaderboard-btn2").css("color", "white")
+        $("#leaderboard-btn3").css("color", "#FAF000")
+    })
 
     $.ajax(
         {
-        url: "http://localhost:3000/leaderboard", 
+        url: "http://172.16.128.100:3001/leaderboard15s", 
         method: 'POST',
         success: function(res){
             let i = 0
+            let c = 2
             while (i < 10) {
-                row = `<div><p>${i+1}. ${res[i].username}</p><p>${res[i].pb_15} WPM</p></div>`
-                $(".temp-leaderboard").append(row)
+                if(c == 2) {
+                    c = 1
+                } else {
+                    c = 2
+                }
+
+                row = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[i].username}</p><p>${res[i].pb_15} WPM</p></div>`
+                $(".leaderboard-15s").append(row)
+                i++;
+            }
+        }
+    })
+
+    $.ajax(
+        {
+        url: "http://172.16.128.100:3001/leaderboard30s", 
+        method: 'POST',
+        success: function(res){
+            let i = 0
+            let c = 2
+            while (i < 10) {
+                if(c == 2) {
+                    c = 1
+                } else {
+                    c = 2
+                }
+
+                row = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[i].username}</p><p>${res[i].pb_30} WPM</p></div>`
+                $(".leaderboard-30s").append(row)
+                i++;
+            }
+        }
+    })
+
+    $.ajax(
+        {
+        url: "http://172.16.128.100:3001/leaderboard60s", 
+        method: 'POST',
+        success: function(res){
+            let i = 0
+            let c = 2
+            while (i < 10) {
+                if(c == 2) {
+                    c = 1
+                } else {
+                    c = 2
+                }
+
+                row = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[i].username}</p><p>${res[i].pb_60} WPM</p></div>`
+                $(".leaderboard-60s").append(row)
                 i++;
             }
         }
     })
 
     $.ajax({
-        url: "http://localhost:3000/userdata", 
+        url: "http://172.16.128.100:3001/userdata", 
         method: 'POST',
         success: function(res){
             username = `<h1>${res[0].username}</h1>`
