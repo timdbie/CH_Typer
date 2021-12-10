@@ -24,30 +24,6 @@ body
     position: absolute  
     opacity: 0.8
 
-.temp-leaderboard
-    width: 400px
-    height: 300px
-    background-color: #0d1116
-    position: absolute
-    top: 0
-    left: 0
-    display: flex
-    flex-direction: column
-    z-index: 99
-    padding: 30px
-
-    h1
-        font-size: 20px
-        color: white
-        text-align: center
-        margin-bottom: 10px
-
-    div
-        display: flex
-        justify-content: space-between
-        align-items: center
-        color: white
-
 .leaderboard-cnt
     width: 100%
     height: 100vh
@@ -69,7 +45,7 @@ body
             display: flex
             justify-content: space-between
             align-items: center
-            padding: 0 20px
+            padding: 0 10px
             
             h1
                 font-size: 30px
@@ -126,6 +102,46 @@ body
         .leaderboard-row2
             background-color: #202831
 
+.user-cnt
+    width: 100%
+    height: 100vh
+    position: absolute
+    z-index: 999
+    display: none
+    justify-content: center
+    align-items: center
+    background-color: #00000088
+
+    .user
+        width: 1000px
+        height: 600px
+        background-color: $background
+
+        .user-header
+            width: 100%
+            height: 80px
+            display: flex
+            justify-content: space-between
+            align-items: center
+            padding: 0 10px
+
+            .user-headerleft
+                display: flex
+                justify-content: space-between
+                align-items: center
+                font-size: 30px
+                color: white
+
+                input
+                    margin-left: 10px
+                    height: 30px
+                    color: white
+                    background-color: transparent
+                    border: 0
+                    padding: 2px
+                    font-size: 25px
+    
+
 .header
     width: 100%
     height: 100px
@@ -171,6 +187,10 @@ body
                 color: $maincolor
                 align-items: center
 
+                .selectedtimer
+                    font-weight: bold
+                    font-size: 110%
+
                 button
                     background: none
                     border: none
@@ -183,9 +203,10 @@ body
                 display: flex
                 justify-content: center
                 align-items: center
-                flex-direction: column
+                cursor: pointer
 
                 h1
+    
                     color: white
                     font-size: 15px
 
@@ -318,6 +339,7 @@ body
         font-size: 25px
         background-color: transparent
         transition: 0.3s
+        cursor: pointer
 
         &:focus
             background-color: #faf000

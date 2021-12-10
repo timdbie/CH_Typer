@@ -39,7 +39,7 @@ app.get('/', function (req, res) {
 		await db.query("SELECT id FROM tb_accounts ORDER BY id DESC LIMIT 1")
 		.then((rows) => {
 			result = rows[0].id
-			let username = "user" + (result).toLocaleString('en-US', {minimumIntegerDigits: 4, useGrouping:false})
+			let username = "user#" + (result).toLocaleString('en-US', {minimumIntegerDigits: 4, useGrouping:false})
 			db.query("UPDATE tb_accounts SET username = '"+username+"' WHERE id = '"+result+"'")
 			
 		})
@@ -76,28 +76,26 @@ app.post('/', function(req, res) {
 				db.query("UPDATE tb_accounts SET pb_60 = "+req.body.netwpmval+" WHERE id = "+req.session.uid+"")
 			}
 		}
-		
-		console.log(req.body)
 	});
 	
 });
 
 app.post('/leaderboard15s', function (req, res) {
-	db.query("SELECT * FROM tb_accounts ORDER BY pb_15 DESC LIMIT 10")
+	db.query("SELECT * FROM tb_accounts ORDER BY pb_15 DESC")
 	.then((rows) =>{
 		res.send(rows)
 	})
 })
 
 app.post('/leaderboard30s', function (req, res) {
-	db.query("SELECT * FROM tb_accounts ORDER BY pb_30 DESC LIMIT 10")
+	db.query("SELECT * FROM tb_accounts ORDER BY pb_30 DESC")
 	.then((rows) =>{
 		res.send(rows)
 	})
 })
 
 app.post('/leaderboard60s', function (req, res) {
-	db.query("SELECT * FROM tb_accounts ORDER BY pb_60 DESC LIMIT 10")
+	db.query("SELECT * FROM tb_accounts ORDER BY pb_60 DESC")
 	.then((rows) =>{
 		res.send(rows)
 	})
@@ -110,5 +108,5 @@ app.post('/userdata', function (req, res) {
 	});
 })
 
-app.listen(3001, "172.16.128.100");
+app.listen(3000);
 console.log('Express server started');

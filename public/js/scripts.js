@@ -10,9 +10,11 @@ $("document").ready(function() {
         w = 0;
         l = 0;
         correctentries = 0;
+        incorrectentries = 0;
         totalentries = 0;
+        totalkeystrokes = 0;
+        totalerrors = 0;
         inputlength = 0;
-        errors = 0;
         toppos = 0;
         firstline = true;
         timerstarted = false;
@@ -44,6 +46,8 @@ $("document").ready(function() {
     }
 
     $(".header-timercnt button").click( function() {
+        $(".header-timercnt button").removeClass("selectedtimer")
+        $(this).addClass("selectedtimer")
         selectedtimer = parseInt($(this).val())
         wpmval = (selectedtimer + 1) / 60
         $("#typer").focus()
@@ -54,6 +58,7 @@ $("document").ready(function() {
         $("#typer").blur()
         $("#endingpopup").fadeTo("fast", 1)
 
+        totalentries = correctentries + incorrectentries
         typedwords = totalentries / 5
         grosswpm = typedwords / wpmval
         grosswpmval = Math.round(grosswpm)
@@ -62,13 +67,13 @@ $("document").ready(function() {
         netwpm = typedcorrectwords / wpmval
         netwpmval = Math.round(netwpm)
 
-        accuracy = Math.round((correctentries / totalentries) * 100)
+        accuracy = Math.round(((totalkeystrokes - totalerrors) / totalkeystrokes) * 100)
 
         $("#wpm h1").html(netwpmval)
         $("#rawwpm").html("raw: " + grosswpmval + " WPM")
 
         $("#accuracy h1").html(accuracy)
-        $("#entries").html("entries: " + totalentries + "/" + correctentries + "/" + errors)
+        $("#entries").html("entries: " + correctentries + "/" + incorrectentries)
 
         $.post({
             url: '/',
@@ -141,7 +146,7 @@ $("document").ready(function() {
         text = $("#typer").val();
 
         if (text != words[w]) {
-            $(`.w${w} > span`).css("border-bottom", "2px solid rgb(220,20,60)")
+            $(`.w${w} > span`).css("border-bottom", "2px solid crimson")
         }
 
 
@@ -191,26 +196,29 @@ $("document").ready(function() {
         }
 
         if ($("#typer").val().length < inputlength) {
-            if($(`.w${w} > .l${l}`).css("color") == "rgb(220,20,60)") {
-                errors--;
-            } else {
+            if($(`.w${w} > .l${l}`).hasClass("incorrect")) {
+                $(`.w${w} > .l${l+1}`).removeClass("incorrect")
+                incorrectentries--;
+            } else if (correctentries > 0){
                 correctentries--;
             }
-
+            
             $(`.w${w} > .l${l}`).css("color", "rgba(255,255,255,0.20)")
             l--;
             checkChar()
         } else {
             if($("#typer").val().length <= words[w].length){
                 if ($("#typer").val().charAt(l) != words[w].charAt(l)) {
-                    $(`.w${w} > .l${l+1}`).css("color", "rgb(220,20,60)")
-                    errors++;
+                    $(`.w${w} > .l${l+1}`).css("color", "crimson")
+                    $(`.w${w} > .l${l+1}`).addClass("incorrect")
+                    incorrectentries++;
+                    totalerrors++;
                 } else {
                     $(`.w${w} > .l${l+1}`).css("color", "white")
                     correctentries++;
                 }
+                totalkeystrokes++;
                 l++;
-                totalentries++;
                 checkChar()
             }
         }
@@ -219,6 +227,10 @@ $("document").ready(function() {
 
     $(".header-lbcnt").click( function(){
         $(".leaderboard-cnt").css("display", "flex")
+    })
+
+    $(".header-usercnt").click( function(){
+        $(".user-cnt").css("display", "flex")
     })
 
     $("#leaderboard-closebtn").click( function(){
@@ -257,7 +269,7 @@ $("document").ready(function() {
 
     $.ajax(
         {
-        url: "http://172.16.128.100:3001/leaderboard15s", 
+        url: "http://localhost:3000/leaderboard15s", 
         method: 'POST',
         success: function(res){
             let i = 0
@@ -278,7 +290,7 @@ $("document").ready(function() {
 
     $.ajax(
         {
-        url: "http://172.16.128.100:3001/leaderboard30s", 
+        url: "http://localhost:3000/leaderboard30s", 
         method: 'POST',
         success: function(res){
             let i = 0
@@ -299,7 +311,7 @@ $("document").ready(function() {
 
     $.ajax(
         {
-        url: "http://172.16.128.100:3001/leaderboard60s", 
+        url: "http://localhost:3000/leaderboard60s", 
         method: 'POST',
         success: function(res){
             let i = 0
@@ -319,11 +331,16 @@ $("document").ready(function() {
     })
 
     $.ajax({
-        url: "http://172.16.128.100:3001/userdata", 
+        url: "http://localhost:3000/userdata", 
         method: 'POST',
         success: function(res){
-            username = `<h1>${res[0].username}</h1>`
-            $(".header-usercnt").append(username)
+            username = res[0].username
+            $(".header-usercnt").append("<h1>" + username + "</h1>")
+            $(".user-headerleft input").val(username)
+
+            if(username.includes("#") == false){
+                $(".user-headerleft input").attr('disabled', true);
+            }
         }
     })
 
