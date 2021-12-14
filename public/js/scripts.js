@@ -237,6 +237,12 @@ $("document").ready(function() {
         $(".leaderboard-cnt").css("display", "none")
     })
 
+    $("#user-closebtn").click( function(){
+        $(".user-cnt").css("display", "none")
+    })
+    
+    
+
     $("#leaderboard-btn1").click( function() {
         $(".leaderboard-15s").css("display", "block")
         $(".leaderboard-30s").css("display", "none")
@@ -330,16 +336,39 @@ $("document").ready(function() {
         }
     })
 
+
+    $(".user-profilebtn").click(changeUsername)
+
+    function changeUsername() {
+        newusername = $(".user-profileinp input").val()
+
+        if(newusername.includes('#') == false && newusername.length >= 3){
+            $.post({
+                url: '/userdata',
+                data: {newusername}
+            })
+
+            alert("Username was set to " + newusername)
+            location.reload();
+        }
+    }
+
     $.ajax({
         url: "http://localhost:3000/userdata", 
         method: 'POST',
         success: function(res){
             username = res[0].username
             $(".header-usercnt").append("<h1>" + username + "</h1>")
-            $(".user-headerleft input").val(username)
 
-            if(username.includes("#") == false){
-                $(".user-headerleft input").attr('disabled', true);
+            $("#pb15s").html(res[0].pb_15 + " WPM")
+            $("#pb30s").html(res[0].pb_30 + " WPM")
+            $("#pb60s").html(res[0].pb_60 + " WPM")
+
+            $(".user-profileinp input").val(username)
+
+            if (username.includes('#') == false) {
+                $(".user-profileinp input").attr("disabled", true)
+                $(".user-profilebtn").css("display", "none")
             }
         }
     })

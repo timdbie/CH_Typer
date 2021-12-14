@@ -182,7 +182,44 @@ body {
   padding: 0 10px;
 }
 
-.user-cnt .user .user-header .user-headerleft {
+.user-cnt .user .user-header h1 {
+  font-size: 30px;
+  color: white;
+}
+
+.user-cnt .user .user-header #user-closebtn {
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.user-cnt .user .user-profilecnt {
+  width: 100%;
+  height: 520px;
+  padding: 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.user-cnt .user .user-profilecnt .user-profiletop {
+  width: 100%;
+  height: 280px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -192,18 +229,130 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.user-cnt .user .user-profilecnt .user-profiletop .user-profileicon {
+  width: 200px;
+  height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-cnt .user .user-profilecnt .user-profiletop .user-profileicon i {
+  font-size: 210px;
+  color: gray;
+}
+
+.user-cnt .user .user-profilecnt .user-profiletop .user-profileinp {
+  width: 310px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid gray;
+}
+
+.user-cnt .user .user-profilecnt .user-profiletop .user-profileinp input {
+  width: 82%;
+  height: 50px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  font-size: 20px;
   color: white;
 }
 
-.user-cnt .user .user-header .user-headerleft input {
-  margin-left: 10px;
-  height: 30px;
+.user-cnt .user .user-profilecnt .user-profiletop .user-profileinp .user-profilebtn {
+  width: 40px;
+  height: 20px;
+  background-color: orange;
   color: white;
-  background-color: transparent;
-  border: 0;
-  padding: 2px;
-  font-size: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.user-cnt .user .user-profilebottom {
+  width: 100%;
+  height: 240px;
+  padding: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: white;
+}
+
+.user-cnt .user .user-profilebottom .user-profilepbcnt {
+  width: 100%;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-cnt .user .user-profilebottom .user-profilepbcnt .user-profilepb {
+  width: 120px;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 25px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.user-cnt .user .user-profilebottom .user-profilepbcnt .user-profilepb h1 {
+  font-size: 20px;
+  color: #FAF000;
 }
 
 .header {

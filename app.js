@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require("express-session")
 const MariaDBStore = require("express-session-mariadb-store")
 const db = require('./database');
+const { Console } = require("console");
 const app = express();
 
 app.use(express.static(__dirname + "/public"));
@@ -106,6 +107,17 @@ app.post('/userdata', function (req, res) {
 	.then((rows) => {
 		res.send(rows)
 	});
+
+	if(req.body.newusername) {
+		db.query("SELECT COUNT(username) AS count FROM tb_accounts WHERE username = '"+req.body.newusername+"'")
+		.then((rows) => {
+			if (rows[0].count == 0) {
+				db.query("UPDATE tb_accounts SET username = '"+req.body.newusername+"' WHERE id = "+req.session.uid+"")
+			} else {
+				console.log("This username already exists!")
+			}
+		})
+	}
 })
 
 app.listen(3000);
