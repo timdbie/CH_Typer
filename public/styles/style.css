@@ -93,7 +93,7 @@ body {
   cursor: pointer;
 }
 
-.leaderboard-cnt .leaderboard .leaderboard-header .leaderboard-btncnt #leaderboard-btn1 {
+.leaderboard-cnt .leaderboard .leaderboard-header .leaderboard-btncnt #leaderboard-btn15s {
   color: #FAF000;
 }
 
@@ -165,6 +165,75 @@ body {
   width: 1000px;
   height: 600px;
   background-color: #11171E;
+  position: relative;
+}
+
+.user-cnt .user .user-popupcnt {
+  width: 1000px;
+  height: 600px;
+  position: absolute;
+  z-index: 1000;
+  background: #11171E;
+  display: none;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 180px 40px;
+}
+
+.user-cnt .user .user-popupcnt p {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.user-cnt .user .user-popupcnt #newusername {
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.user-cnt .user .user-popupcnt .user-popupbtncnt {
+  width: 350px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.user-cnt .user .user-popupcnt .user-popupbtncnt .user-popupbtn {
+  width: 150px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.user-cnt .user .user-popupcnt .user-popupbtncnt #popupYes {
+  background-color: mediumseagreen;
+}
+
+.user-cnt .user .user-popupcnt .user-popupbtncnt #popupNo {
+  background-color: crimson;
 }
 
 .user-cnt .user .user-header {
@@ -180,6 +249,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 10px;
+  position: relative;
 }
 
 .user-cnt .user .user-header h1 {
@@ -215,6 +285,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  position: relative;
 }
 
 .user-cnt .user .user-profilecnt .user-profiletop {
@@ -282,7 +353,7 @@ body {
 .user-cnt .user .user-profilecnt .user-profiletop .user-profileinp .user-profilebtn {
   width: 40px;
   height: 20px;
-  background-color: orange;
+  background-color: #FAF000;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -295,6 +366,7 @@ body {
           align-items: center;
   border-radius: 3px;
   font-size: 10px;
+  cursor: pointer;
 }
 
 .user-cnt .user .user-profilebottom {

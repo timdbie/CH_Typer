@@ -242,40 +242,19 @@ $("document").ready(function() {
     })
     
     
+    $(".leaderboard-btn").click( function() {
+        $(".leaderboard-btn").css("color", "white")
+        $(".leaderboard-page").css("display", "none")
 
-    $("#leaderboard-btn1").click( function() {
-        $(".leaderboard-15s").css("display", "block")
-        $(".leaderboard-30s").css("display", "none")
-        $(".leaderboard-60s").css("display", "none")
-
-        $("#leaderboard-btn1").css("color", "#FAF000")
-        $("#leaderboard-btn2").css("color", "white")
-        $("#leaderboard-btn3").css("color", "white")
+        selectedlb = $(this).attr("id").replace("leaderboard-btn", "")
+        $(".leaderboard-" + selectedlb).css("display", "block")
+        $("#leaderboard-btn" + selectedlb).css("color", "#FAF000")
     })
 
-    $("#leaderboard-btn2").click( function() {
-        $(".leaderboard-15s").css("display", "none")
-        $(".leaderboard-30s").css("display", "block")
-        $(".leaderboard-60s").css("display", "none")
 
-        $("#leaderboard-btn1").css("color", "white")
-        $("#leaderboard-btn2").css("color", "#FAF000")
-        $("#leaderboard-btn3").css("color", "white")
-    })
-
-    $("#leaderboard-btn3").click( function() {
-        $(".leaderboard-15s").css("display", "none")
-        $(".leaderboard-30s").css("display", "none")
-        $(".leaderboard-60s").css("display", "block")
-
-        $("#leaderboard-btn1").css("color", "white")
-        $("#leaderboard-btn2").css("color", "white")
-        $("#leaderboard-btn3").css("color", "#FAF000")
-    })
-
-    $.ajax(
+    /*$.ajax(
         {
-        url: "http://localhost:3000/leaderboard15s", 
+        url: "http://localhost:3000/leaderboard", 
         method: 'POST',
         success: function(res){
             let i = 0
@@ -292,66 +271,42 @@ $("document").ready(function() {
                 i++;
             }
         }
-    })
+    })*/
 
     $.ajax(
         {
-        url: "http://localhost:3000/leaderboard30s", 
+        url: "http://localhost:3000/leaderboard", 
         method: 'POST',
         success: function(res){
-            let i = 0
-            let c = 2
-            while (i < 10) {
-                if(c == 2) {
-                    c = 1
-                } else {
-                    c = 2
-                }
-
-                row = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[i].username}</p><p>${res[i].pb_30} WPM</p></div>`
-                $(".leaderboard-30s").append(row)
-                i++;
-            }
+            i = 0
         }
     })
-
-    $.ajax(
-        {
-        url: "http://localhost:3000/leaderboard60s", 
-        method: 'POST',
-        success: function(res){
-            let i = 0
-            let c = 2
-            while (i < 10) {
-                if(c == 2) {
-                    c = 1
-                } else {
-                    c = 2
-                }
-
-                row = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[i].username}</p><p>${res[i].pb_60} WPM</p></div>`
-                $(".leaderboard-60s").append(row)
-                i++;
-            }
-        }
-    })
-
-
-    $(".user-profilebtn").click(changeUsername)
 
     function changeUsername() {
         newusername = $(".user-profileinp input").val()
 
-        if(newusername.includes('#') == false && newusername.length >= 3){
+        if(newusername.includes('#') == false && newusername.length >= 3 && newusername.length <= 20){
             $.post({
                 url: '/userdata',
                 data: {newusername}
             })
-
-            alert("Username was set to " + newusername)
             location.reload();
+        } else {
+            alert("Your new username does not meet the requirements.")
         }
     }
+    
+    $(".user-profilebtn").click( function(){
+        $(".user-popupcnt").css("display", "flex")
+        $("#newusername").html($(".user-profileinp input").val())
+    })
+
+    $("#popupYes").click(changeUsername)
+
+    $("#popupNo").click( function() {
+        $(".user-popupcnt").css("display", "none")
+        $("#newusername").empty()
+    })
 
     $.ajax({
         url: "http://localhost:3000/userdata", 

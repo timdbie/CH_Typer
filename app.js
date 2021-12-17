@@ -81,24 +81,10 @@ app.post('/', function(req, res) {
 	
 });
 
-app.post('/leaderboard15s', function (req, res) {
-	db.query("SELECT * FROM tb_accounts ORDER BY pb_15 DESC")
-	.then((rows) =>{
-		res.send(rows)
-	})
-})
-
-app.post('/leaderboard30s', function (req, res) {
-	db.query("SELECT * FROM tb_accounts ORDER BY pb_30 DESC")
-	.then((rows) =>{
-		res.send(rows)
-	})
-})
-
-app.post('/leaderboard60s', function (req, res) {
-	db.query("SELECT * FROM tb_accounts ORDER BY pb_60 DESC")
-	.then((rows) =>{
-		res.send(rows)
+app.post('/leaderboard', function (req, res) {
+	db.query("(SELECT * FROM tb_accounts ORDER BY pb_15 DESC) UNION ALL (SELECT * FROM tb_accounts ORDER BY pb_30 DESC)")
+	.then((rows) => {
+		
 	})
 })
 
