@@ -82,9 +82,31 @@ app.post('/', function(req, res) {
 });
 
 app.post('/leaderboard', function (req, res) {
-	db.query("(SELECT * FROM tb_accounts ORDER BY pb_15 DESC) UNION ALL (SELECT * FROM tb_accounts ORDER BY pb_30 DESC)")
-	.then((rows) => {
-		
+	async function fetchLeaderboard() {
+		let top15s = []
+		let top30s = []
+		let top60s = []
+
+		await db.query("SELECT * FROM tb_accounts ORDER BY pb_15 DESC")
+		.then((rows) => {
+			top15s = rows
+		})
+
+		await db.query("SELECT * FROM tb_accounts ORDER BY pb_30 DESC")
+		.then((rows) => {
+			top30s = rows
+		})
+
+		await db.query("SELECT * FROM tb_accounts ORDER BY pb_60 DESC")
+		.then((rows) => {
+			top60s = rows
+		})	
+
+		return [top15s, top30s, top60s];
+	}
+
+	fetchLeaderboard().then(data => {
+		res.send(data)
 	})
 })
 

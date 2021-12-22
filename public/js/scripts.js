@@ -251,34 +251,32 @@ $("document").ready(function() {
         $("#leaderboard-btn" + selectedlb).css("color", "#FAF000")
     })
 
-
-    /*$.ajax(
+    $.ajax(
         {
         url: "http://localhost:3000/leaderboard", 
         method: 'POST',
         success: function(res){
             let i = 0
             let c = 2
-            while (i < 10) {
-                if(c == 2) {
-                    c = 1
-                } else {
-                    c = 2
-                }
 
-                row = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[i].username}</p><p>${res[i].pb_15} WPM</p></div>`
-                $(".leaderboard-15s").append(row)
+            while (i < 10) {
+                if (c == 1) {
+                    c = 2
+                } else {
+                    c = 1
+                }
+                
+                row15s = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[0][i].username}</p><p>${res[0][i].pb_15} WPM</p></div>`
+                $(".leaderboard-15s").append(row15s)
+
+                row30s = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[1][i].username}</p><p>${res[1][i].pb_30} WPM</p></div>`
+                $(".leaderboard-30s").append(row30s)
+
+                row60s = `<div class="leaderboard-row${c}"><p>${i+1}. ${res[2][i].username}</p><p>${res[2][i].pb_60} WPM</p></div>`
+                $(".leaderboard-60s").append(row60s)
+
                 i++;
             }
-        }
-    })*/
-
-    $.ajax(
-        {
-        url: "http://localhost:3000/leaderboard", 
-        method: 'POST',
-        success: function(res){
-            i = 0
         }
     })
 
